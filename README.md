@@ -11,7 +11,7 @@ This repository provides the PYTHON codes used to run the experiments. We used P
 
 or
 
-> `pythom -m pip install pandas`
+> `python -m pip install pandas`
 
 or 
 
