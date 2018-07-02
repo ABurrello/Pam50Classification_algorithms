@@ -6,8 +6,18 @@ This repository provides the PYTHON codes used to run the experiments. We used P
 ## Prerequisites
 
 * Running version of python 2.7.
-* Packages to be installed: sklearn, scipy, numpy, pandas, imblearn. You can install by e.g.
+* Packages to be installed: sklearn (scikit-learn), scipy, numpy, pandas, imblearn. You can install by e.g.
 > `pip install pandas`
+
+or
+
+> `pythom -m pip install pandas`
+
+or 
+
+> `conda install pandas`
+
+
 
 ## Dataset
 The dataset used could be downloaded from [here](https://www.dropbox.com/s/g2sggr622t6agu4/Dataset.mat?dl=0)
