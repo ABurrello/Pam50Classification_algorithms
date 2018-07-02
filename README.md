@@ -26,14 +26,17 @@ The starting file is the main, while all the others are the classes used inside:
 To achieve the results, you can run the script in two different ways:
 * by normally call the script with 
 > `python .\Main.py`
+
 and following the I/O user interface selecting the preferred methods. 
 **N.B.** If the *Unsupervised* pipeline is choosen, the feature reduction and class imbalance management are fixed, because we force methods that don't need any labels.
 
 * using the command line through the parameter --fast True. The default pipeline in this case is : PCA, no class balancing,SVC.
 With the command 
 > `python .\Main.py -h`
+
 each part of the pipeline can be modified by inserting the corresponding arguments (see --help).
 Example:
+
 > `python .\Main.py --fast True --reduction LDA --imbalance SMOTE --supervised Random_Forest`
 
 The implemented methods are:
