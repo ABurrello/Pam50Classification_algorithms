@@ -34,7 +34,8 @@ and following the I/O user interface selecting the preferred methods.
 With the command 
 > `python .\Main.py -h`
 
-each part of the pipeline can be modified by inserting the corresponding arguments (see --help).
+you can see the parameter to set and how to fill them.
+Each part of the pipeline can be modified by inserting the corresponding arguments (see --help).
 Example:
 
 > `python .\Main.py --fast True --reduction LDA --imbalance SMOTE --supervised Random_Forest`
