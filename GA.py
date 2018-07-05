@@ -28,9 +28,9 @@ class GeneticAlgSelect():
 
     def __set_constant(self):
         # define default constants
-        self.num_worker = self.para['num_worker'] if 'num_worker' in self.para else 100
-        self.max_iter = self.para['max_iter'] if 'max_iter' in self.para else 10
-        self.pool_size = self.para['pool_size'] if 'pool_size' in self.para else 100
+        self.num_worker = self.para['num_worker'] if 'num_worker' in self.para else 1
+        self.max_iter = self.para['max_iter'] if 'max_iter' in self.para else 5
+        self.pool_size = self.para['pool_size'] if 'pool_size' in self.para else 10
         self.mutateLR = self.para['mutateLR'] if 'mutateLR' in self.para else 0.5
         self.mutateUR = self.para['mutateUR'] if 'mutateUR' in self.para else 0.9
         self.mutateBIT = self.para['mutateBIT'] if 'mutateBIT' in self.para else 0.1
@@ -75,6 +75,7 @@ class GeneticAlgSelect():
         #t 'training model: %d /n' %(i)
         data_in = self.data_in[:,self.mdl_pool[i].gene==1]
         self.mdl_pool[i]._train_mdl(data_in,self.data_out)
+        print i
 
     # get model with highest score (best performance)
     def __eliticism(self):

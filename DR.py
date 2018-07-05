@@ -57,9 +57,13 @@ class DimReduction():
         # Create an LDA that will reduce the data down to N feature
         # run an LDA and use it to transform the features
         if to_fit == 1:
-            self.model = LinearDiscriminantAnalysis(n_components=self.dim_out)
+            self.model = LinearDiscriminantAnalysis()
             self.model.fit( data_in, labels)
+            import pdb
+            pdb.set_trace()
         else :
+            import pdb
+            pdb.set_trace()
             return self.model.transform(data_in)
 
     def fit(self, data_in, labels = None):

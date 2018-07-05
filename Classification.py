@@ -55,7 +55,7 @@ class Classification_methods:
         #            The train and test data are parameters of the class itself
         #INPUT:
         #OUTPUT:
-        clf = KNeighborsClassifier(n_neighbors=3, weights='uniform', algorithm='brute', \
+        clf = KNeighborsClassifier(n_neighbors=1, weights='uniform', algorithm='brute', \
              p=2, metric='minkowski')
              #p=2 and minkowski is the euclidean distance, brute force will compute distance for each point.
         clf.fit(self.xtrain, self.ytrain)
@@ -67,7 +67,7 @@ class Classification_methods:
         #            The train and test data are parameters of the class itself
         #INPUT:
         #OUTPUT:
-        clf = RandomForestClassifier(n_estimators= 50, max_depth=8, max_leaf_nodes=20,random_state=0)
+        clf = RandomForestClassifier(n_estimators = 40, max_depth=8, max_leaf_nodes=25,random_state=0)
         clf.fit(self.xtrain, self.ytrain)
         self.Prediction = clf.predict(self.xtest)
 
@@ -76,56 +76,38 @@ class Classification_methods:
         #            By now the number of cluster is 5, as the number of classes.
         #INPUT:
         #OUTPUT:
-        NCLUSTER = 5
+        NCLUSTER = 20
         kmeans = KMeans(init='k-means++',n_clusters=NCLUSTER, random_state=0)
         kmeans.fit(self.xtrain)
-        label_convert = []
+        klabels = kmeans.predict(self.xtest)
+        guesses = np.zeros(klabels.size)
         for i in range(NCLUSTER):
+            labels_cluster = self.ytest[klabels==i]
             classes= []
-            index=kmeans.labels_==i
-            index_int = []
-            for ind in range(index.size):
-                if index[ind] ==True:
-                    index_int.append(ind)
-            for j in range(5):
-                classes.append(sum(self.ytest[index_int]==j+1))
-            max_label = max(classes)
-            first = 1
-            for j in range(5):
-                if classes[j]==max_label and first == 1:
-                    label_convert.append(j+1)
-                    first = 0
-        self.Prediction = kmeans.labels_
-        for i in range(self.Prediction.size):
-            self.Prediction[i] = label_convert[self.Prediction[i]]
+            for j in range(NCLUSTER):
+                classes.append(sum(labels_cluster==j+1))
+            label_convert = np.argmax(classes)+1
+            guesses[klabels==i] = label_convert
+        self.Prediction = guesses
 
     def AggClustering(self):
         #Description: the function perform Hierarchical Clustering
         #            By now the number of cluster is 5, as the number of classes.
         #INPUT:
         #OUTPUT:
-        NCLUSTER = 5
+        NCLUSTER = 20
         clt = AgglomerativeClustering(n_clusters=NCLUSTER, affinity = 'euclidean',linkage = 'ward')
-        clt.fit(self.xtrain)
-        label_convert = []
+        #clt = DBSCAN(eps=0.2, min_samples=5, metric='euclidean', leaf_size=30)
+        clt.fit(self.xtrain/self.xtrain.max())
+        guesses = np.zeros(clt.labels_.size)
         for i in range(NCLUSTER):
+            labels_cluster = self.ytest[clt.labels_==i]
             classes= []
-            index=clt.labels_==i
-            index_int = []
-            for ind in range(index.size):
-                if index[ind] ==True:
-                    index_int.append(ind)
-            for j in range(5):
-                classes.append(sum(self.ytest[index_int]==j+1))
-            max_label = max(classes)
-            first = 1
-            for j in range(5):
-                if classes[j]==max_label and first == 1:
-                    label_convert.append(j+1)
-                    first = 0
-        self.Prediction = clt.labels_
-        for i in range(self.Prediction.size):
-            self.Prediction[i] = label_convert[self.Prediction[i]]
+            for j in range(NCLUSTER):
+                classes.append(sum(labels_cluster==j+1))
+            label_convert = np.argmax(classes)+1
+            guesses[clt.labels_==i] = label_convert
+        self.Prediction = guesses
 
 
 

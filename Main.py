@@ -12,7 +12,9 @@ from Imbalance_manager import Imbalance_classes
 
 #Nfeatures is the number of final features after the reduction,
 #both for future selection methods and feature reduction
-Nfeatures = 600
+NfeaturesPCA = 180
+NfeaturesLDA = 4
+NfeaturesGA = 1800
 #number of folds for the K-fold cross validation
 NFOLDS = 10
 #display methods: the algorithm either takes arguments as parameters in the launching command,
@@ -22,6 +24,13 @@ Arguments = displayer.Pipeline_construction()
 Feature_reduction = Arguments[0]
 Imbalance_model = Arguments[1]
 Classification_choice = Arguments[2]
+if Feature_reduction == 'PCA':
+    Nfeatures = NfeaturesPCA
+if Feature_reduction == 'LDA':
+    Nfeatures = NfeaturesLDA
+if Feature_reduction == 'GA':
+    Nfeatures = NfeaturesGA
+
 np.random.seed(0)
 
 #loading of the dataset
@@ -44,7 +53,6 @@ for i in range(len(Y)):
 
 X = X[Y<6, :]
 Y = Y[Y<6]
-
 #remove features with all 0
 X = X[:, sum(X,0)!=0]
 #Unsupervised pipeline: we force reduction to PCA and not class imbalance to apply the clustering:
@@ -53,7 +61,7 @@ X = X[:, sum(X,0)!=0]
 if Classification_choice == 'kMeans' or Classification_choice == 'HierarchicalClustering':
     FeatR = DimReduction(mdl_type = Feature_reduction, dim_out = Nfeatures)
     X_train = FeatR.Dataset_reduction(X, supervised = False)
-    classifier = Classification_methods(X,ytest=Y)
+    classifier = Classification_methods(X_train,ytest=Y)
     Accuracy, F1_score,BER = classifier.Classification_start(Classification_choice)
 else:
     #k-fold cross validation
