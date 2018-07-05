@@ -2,6 +2,9 @@
 ## An overview of different preprocessing thecniques, imbalance management and learning algorithms.
 
 This repository provides the PYTHON codes used to run the experiments. We used Python 2.7.14.
+## Repository structure
+
+In the main branch there are all the files needed to run the algorithm. In the folder Dataset_creation we have the two scripts, one in matlab and one in python to create the dataset used starting from the raw filed of the gdc site.
 
 ## Prerequisites
 
