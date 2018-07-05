@@ -79,15 +79,14 @@ class Classification_methods:
         NCLUSTER = 20
         kmeans = KMeans(init='k-means++',n_clusters=NCLUSTER, random_state=0)
         kmeans.fit(self.xtrain)
-        klabels = kmeans.predict(self.xtest)
-        guesses = np.zeros(klabels.size)
+        guesses = np.zeros(kmeans.labels_.size)
         for i in range(NCLUSTER):
-            labels_cluster = self.ytest[klabels==i]
+            labels_cluster = self.ytest[kmeans.labels_==i]
             classes= []
             for j in range(NCLUSTER):
                 classes.append(sum(labels_cluster==j+1))
             label_convert = np.argmax(classes)+1
-            guesses[klabels==i] = label_convert
+            guesses[kmeans.labels_==i] = label_convert
         self.Prediction = guesses
 
     def AggClustering(self):
