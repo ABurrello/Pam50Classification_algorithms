@@ -75,7 +75,6 @@ class GeneticAlgSelect():
         #t 'training model: %d /n' %(i)
         data_in = self.data_in[:,self.mdl_pool[i].gene==1]
         self.mdl_pool[i]._train_mdl(data_in,self.data_out)
-        print i
 
     # get model with highest score (best performance)
     def __eliticism(self):
