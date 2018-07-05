@@ -68,4 +68,5 @@ The implemented methods are:
 * The Dimensional reduction methods produce 180 features for PCA, 5 for LDA and 1800 for Genetic Algorithm. 
 * You can change number of folds and Number of features in the algorithm changing *NFOLDS* and *Nfeatures*. 
 * The performance is evaluated through *Accuracy*, *F1 score* and *Balanced Error rate* (this last one is better if lower and takes into account the unbalancing of the classes).
+* The algorithm of the GA has a number of worker that could be set as parameter. Using 1 is the safe mode to use a single thread. However, you can increase this number to use more threads and speed up the algorithm.
 
