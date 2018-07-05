@@ -41,6 +41,7 @@ To achieve the results, you can run the script in two different ways:
 > `python .\Main.py`
 
 and following the I/O user interface selecting the preferred methods. 
+
 **N.B.** If the *Unsupervised* pipeline is choosen, the feature reduction and class imbalance management are fixed, because we force methods that don't need any labels.
 
 * using the command line through the parameter --fast True. The default pipeline in this case is : PCA, no class balancing,SVC.
@@ -63,7 +64,7 @@ The implemented methods are:
 ## Notes on the algorithms
 * The algorithm with the supervised pipeline use 10-fold cross validation for test.
 * The unsupervised pipeline is forced, you can change only the unsupervised method: in addition we use the full dataset in the unsupervised version.
-* The Dimensional reduction methods produce 600 features by now. We will fine tune this parameter. 
+* The Dimensional reduction methods produce 180 features for PCA, 5 for LDA and 1800 for Genetic Algorithm. 
 * You can change number of folds and Number of features in the algorithm changing *NFOLDS* and *Nfeatures*. 
 * The performance is evaluated through *Accuracy*, *F1 score* and *Balanced Error rate* (this last one is better if lower and takes into account the unbalancing of the classes).
 
