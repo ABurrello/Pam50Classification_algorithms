@@ -59,11 +59,7 @@ class DimReduction():
         if to_fit == 1:
             self.model = LinearDiscriminantAnalysis()
             self.model.fit( data_in, labels)
-            import pdb
-            pdb.set_trace()
         else :
-            import pdb
-            pdb.set_trace()
             return self.model.transform(data_in)
 
     def fit(self, data_in, labels = None):
