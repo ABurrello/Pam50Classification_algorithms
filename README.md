@@ -62,6 +62,7 @@ The implemented methods are:
 * **Dim Reduction**: 		PCA, LDA, GA
 
 ## Notes on the algorithms
+* The dataset should be in the same folder of all the files of the algorithm.
 * The algorithm with the supervised pipeline use 10-fold cross validation for test.
 * The unsupervised pipeline is forced, you can change only the unsupervised method: in addition we use the full dataset in the unsupervised version.
 * The Dimensional reduction methods produce 180 features for PCA, 5 for LDA and 1800 for Genetic Algorithm. 
