@@ -24,7 +24,7 @@ class GUI_design:
                 'LDA',
                 'GA']
         Classes = ['SMOTE',
-                'SMOTEEN',
+                'SMOTEENN',
                 'RandomOverSampling',
                 'None']
         Learnings = ['Supervised',
@@ -62,7 +62,7 @@ class GUI_design:
         args = parser.parse_args()
         assert args.fast in [False, True]
         assert args.reduction in ['PCA','LDA', 'GA']
-        assert args.imbalance in ['RandomOverSampling', 'SMOTE','SMOTEEN','None']
+        assert args.imbalance in ['RandomOverSampling', 'SMOTE','SMOTEENN','None']
         assert args.supervised in ['SVC', 'kNN', 'Random_Forest']
         assert args.unsupervised in [None,'kMeans','HierarchicalClustering']
         if args.fast == True:
