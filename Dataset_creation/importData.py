@@ -52,7 +52,7 @@ Labels = ['Dataset_Labels2.xls', 'Dataset_Labels3.xls']
 Dim = [1148,467]
 z=0
 for dataset in Labels:
-    xls = pd.ExcelFile('Dataset_Labels2.xls', header=None)
+    xls = pd.ExcelFile(dataset, header=None)
     sheet2 = xls.parse(0)
     var1_2 = sheet2['Sample ID']
     var2_2 = sheet2['PAM50']
