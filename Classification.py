@@ -83,7 +83,7 @@ class Classification_methods:
         for i in range(NCLUSTER):
             labels_cluster = self.ytest[kmeans.labels_==i]
             classes= []
-            for j in range(NCLUSTER):
+            for j in range(5):
                 classes.append(sum(labels_cluster==j+1))
             label_convert = np.argmax(classes)+1
             guesses[kmeans.labels_==i] = label_convert
@@ -102,7 +102,7 @@ class Classification_methods:
         for i in range(NCLUSTER):
             labels_cluster = self.ytest[clt.labels_==i]
             classes= []
-            for j in range(NCLUSTER):
+            for j in range(5):
                 classes.append(sum(labels_cluster==j+1))
             label_convert = np.argmax(classes)+1
             guesses[clt.labels_==i] = label_convert
