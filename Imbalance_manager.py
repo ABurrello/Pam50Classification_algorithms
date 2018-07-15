@@ -24,6 +24,7 @@ class Imbalance_classes:
         if string == 'SMOTE':
             tl = SMOTE(random_state=42)
         elif string == 'SMOTEENN':
+            #3 neighbors for Edited nearest neighbors: Normal SMOTE: distance of 2 points of the class and new point in between
             tl = SMOTEENN(random_state=42)
         elif string == 'RandomOverSampling':
             tl = RandomOverSampler(random_state=42)

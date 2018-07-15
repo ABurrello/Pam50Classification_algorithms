@@ -96,6 +96,7 @@ class Classification_methods:
         #OUTPUT:
         NCLUSTER = 20
         clt = AgglomerativeClustering(n_clusters=NCLUSTER, affinity = 'euclidean',linkage = 'ward')
+        #ward = ward minimizes the variance of the clusters being merged.
         #clt = DBSCAN(eps=0.2, min_samples=5, metric='euclidean', leaf_size=30)
         clt.fit(self.xtrain/self.xtrain.max())
         guesses = np.zeros(clt.labels_.size)

@@ -54,18 +54,18 @@ class GUI_design:
         #OUTPUT: - Arguments: composed by the 3 elements of the pipeline, adressed by their name
         self.Initial_Display()
         parser = argparse.ArgumentParser()
-        parser.add_argument("--fast", default = False, type = bool, dest = 'fast', help="Set to true if you want to avoid the decision of all the steps by hand")
+        parser.add_argument("--fast", default = 'False',  dest = 'fast', help="Set to true if you want to avoid the decision of all the steps by hand")
         parser.add_argument("--reduction", default = 'PCA', dest = 'reduction', help="Feature_reduction or selection algorithm.  Possible methods: PCA,LDA,GA(Genetic Algorithm)")
         parser.add_argument("--imbalance", default = 'None', dest = 'imbalance', help="Class imbalance management thecniques. Possible methods: SMOTE,SMOTEENN,RandomOverSampling,None")
         parser.add_argument("--supervised", default = 'SVC', dest = 'supervised', help="Supervised methods to set.  Possible methods: SVC,kNN,Random_Forest")
         parser.add_argument("--unsupervised", default = None, dest = 'unsupervised', help="Unsupervised method. If set the algorithm will use the unsupervised pipeline. Possible methods: kMeans,HierarchicalClustering")
         args = parser.parse_args()
-        assert args.fast in [False, True]
+        assert args.fast in ['False', 'True']
         assert args.reduction in ['PCA','LDA', 'GA']
         assert args.imbalance in ['RandomOverSampling', 'SMOTE','SMOTEENN','None']
         assert args.supervised in ['SVC', 'kNN', 'Random_Forest']
         assert args.unsupervised in [None,'kMeans','HierarchicalClustering']
-        if args.fast == True:
+        if args.fast == 'True':
             if args.unsupervised == None:
                 arguments = [args.reduction, args.imbalance, args.supervised]
             else:
